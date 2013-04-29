@@ -1,6 +1,45 @@
-.row.logo
+%section.row.hero
   .large-12.large-centered.columns
-    %h1 Stupid Sexy Sliders
+    %h1 Stupid Sexy Slide Show
+    %h2 A simple, extensible content slider written in backbone.
 
-.row
+%section.demo.row
   .large-12.columns
+    #slideshow1
+
+%section.instructions.row
+  .large-12.columns
+    %h3 Usage
+
+
+%script#slideshow-template{:type => "text/x-handlebars-template"}
+  .slideshow
+    .controls
+      %a.prev Prev
+      %a.next Next
+    %ul.slides
+      {{#each slides }}
+      %li.slide{:id => "slide-{{@index}}"}
+        .title {{title}}
+        %img{:src => "{{image}}"}/
+        .box
+          %span.content {{{content}}}
+          %span.link
+            %a{:href => "{{link}}"} {{link_title}}
+        .video
+          {{{video}}}
+      {{/each}}
+    .navigation
+
+:javascript
+  $(document).ready(function() {
+    slides = new Backbone.Collection([
+      {title: "Slide 1", image: "/images/slides/slide1.jpg"},
+      {title: "Slide 2", image: "/images/slides/slide2.jpg"},
+      {title: "Slide 3", image: "/images/slides/slide3.jpg"},
+      {title: "Slide 4", image: "/images/slides/slide4.jpg"},
+      {title: "Slide 5", image: "/images/slides/slide5.jpg"}
+    ])
+    template = Handlebars.compile($('#slideshow-template').html())
+    slideshow = new StupidSexySlideShow({el: '#slideshow1', collection: slides, template: template})
+  });

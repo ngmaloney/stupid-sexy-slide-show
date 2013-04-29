@@ -1,0 +1,109 @@
+.slideshow
+  position: relative
+  width: 960px
+
+  .controls
+    z-index: 99
+    position: absolute
+    top: 130px
+    left: -40px
+    width: -webkit-calc(100% + 80px)
+    width: calc(100% + 80px)
+
+    a
+      width: 80px
+      height: 80px
+      display: inline-block
+      +border-radius(40px)
+
+      &:hover
+        background-color: rgba(#1c1c1c, 0.6)
+        +border-radius(40px)
+
+    .next
+      background: url('next_arrow.png')
+      +hide_text()
+      float: right
+
+    .prev
+      background: url('previous_arrow.png')
+      +hide_text()
+      float: left
+
+  .navigation
+    text-align: center
+    background-color: #eee
+    display: block
+    height: 60px
+    padding: 20px 20px
+    color: #979797
+    font-size: 18px
+
+    .index
+      display: none
+
+    a
+      color: block
+      +hide-text()
+      background: url('black_circle.png')
+      display: inline-block
+      margin: 0 10px 0 0
+      width: 11px
+      height: 11px
+
+      &.active
+        background: url('gray_circle.png')
+        display: inline-block
+
+  ul.slides
+    overflow: hidden
+    display: inline
+
+    .box
+      width: 340px
+      height: 190px
+      position: absolute
+      top: 60px
+      left: 60px
+      background-color: rgba(#1c1c1c, 0.6)
+      color: #fff
+      padding: 10px
+
+      .link a
+        color: #efb630
+        text-transform: uppercase
+
+        &:hover
+          text-decoration: underline
+
+    li.slide
+      display: none
+      float:left
+      height: auto
+      width: 960px
+      height: 315px
+      overflow: hidden
+      background-color: #666666
+
+      .title
+        display: none
+
+      .video
+        display: inline-block
+        position: absolute
+        height: 320px
+        width: 560px
+        top: 0px
+        left: 200px
+        z-index: 99
+
+#content-slider
+  display: block
+  width: 960px
+  height: 370px
+  margin-bottom: 20px
+
+  &.loading
+    background: url('application/ajax-loader.gif') no-repeat center
+
+

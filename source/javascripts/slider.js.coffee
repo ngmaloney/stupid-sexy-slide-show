@@ -3,7 +3,7 @@
 Slide = Backbone.Model.extend({})
 
 Slides = Backbone.Collection.extend
-  model: SSSlide
+  model: Slide
 
   initialize: (models, options) =>
 
@@ -14,36 +14,10 @@ Slider = Backbone.View.extend
     'click a.prev': 'prevSlide'
     'click .navigation a': 'navigateTo'
 
-  template: _.template("""
-    <div class="slideshow">
-      <div class="controls">
-        <a class="prev">Prev</a>
-        <a class="next">Next</a>
-      </div>
-      <ul class="slides">
-        {{#each slides }}
-          <li class="slide" id="slide-{{@index}}">
-            <div class="title">{{title}}</div>
-            <img src="{{image}}" />
-            <div class="box">
-              <span class="content">{{{content}}}</span>
-              <span class="link"><a href="{{link}}">{{link_title}}</a></span>
-            </div>
-            <div class="video">
-              {{{video}}}
-            </div>
-          </li>
-        {{/each}}
-      </ul>
-      <div class="navigation"></div>
-    </div>
-  """)
-
   initialize: (options) ->
     @collection = options.collection
-    @collection.on 'sync', @render, this
-    @collection.fetch()
     @bind 'transition', @updateNav
+    @template = options.template
 
   render: ->
     content = @template({slides: @collection.toJSON()})
@@ -101,10 +75,7 @@ Slider = Backbone.View.extend
 
 class StupidSexySlideShow
   constructor: (options) ->
-    collection = new Slides()
-    collection.url = options.endpoint
-    params = {el: options.el, collection: collection}
+    new Slider(options).render()
 
-    new Slider(params)
-
-FBA.SSSlideShow = StupidSexySlideShow
+window.StupidSexySlideShow ||= {}
+window.StupidSexySlideShow = StupidSexySlideShow
