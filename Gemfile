@@ -3,4 +3,5 @@
 source 'http://rubygems.org'
 
 gem "middleman", "~>3.0.13"
+gem "middleman-gh-pages"
 gem "zurb-foundation", :git => "git@github.com:zurb/foundation.git"
