@@ -1,16 +1,51 @@
+.row
+  .large-12.large-centered.columns
+    %a{:href => "https://github.com/ngmaloney/stupid-sexy-slide-show"}
+      %img{:alt => "Fork me on GitHub", :src => "https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png", :style => "position: absolute; top: 0; left: 0; border: 0;"}/
+
 %section.row.hero
   .large-12.large-centered.columns
     %h1 Stupid Sexy Slide Show
-    %h2 A simple, extensible content slider written in backbone.
+    %h2 A simple, extensible content slider written in Backbone.
 
 %section.demo.row
   .large-12.columns
-    #slideshow1
+    #slideshow1.loading
+
+%section.introduction.row
+  .large-12.columns
+    %h3 Introduction
+
+    %p Stupid Sexy Slide Show is a minimalistic javascript content slider built for easy integration with Backbone. It is template and agnostic meaning it will work with any Backbone compatible template library. All styling is handled via CSS.
+
+%section.dependencies.row
+  .large-12.columns
+    %h3 Dependencies
+    %ul
+      %li JQuery
+      %li Backbone
+      %li Underscore
 
 %section.instructions.row
   .large-12.columns
     %h3 Usage
 
+    .panel
+      %pre.code
+        :preserve
+          //Any backbone collection will work
+          slides = new Backbone.Collection([
+            {title: "Slide 1", image: "/images/slides/slide1.jpg"},
+            {title: "Slide 2", image: "/images/slides/slide2.jpg"},
+            {title: "Slide 3", image: "/images/slides/slide3.jpg"},
+            {title: "Slide 4", image: "/images/slides/slide4.jpg"}
+          ])
+
+          //This example relies on a handlebars template. Underscore templates work just fine too.
+          template = Handlebars.compile($('#slideshow-template').html())
+
+          //The initializer requires the Backbone 'el' element, a collection and a template
+          slideshow = new StupidSexySlideShow({el: '#slideshow1', collection: slides, template: template})
 
 %script#slideshow-template{:type => "text/x-handlebars-template"}
   .slideshow
@@ -37,8 +72,7 @@
       {title: "Slide 1", image: "/images/slides/slide1.jpg"},
       {title: "Slide 2", image: "/images/slides/slide2.jpg"},
       {title: "Slide 3", image: "/images/slides/slide3.jpg"},
-      {title: "Slide 4", image: "/images/slides/slide4.jpg"},
-      {title: "Slide 5", image: "/images/slides/slide5.jpg"}
+      {title: "Slide 4", image: "/images/slides/slide4.jpg"}
     ])
     template = Handlebars.compile($('#slideshow-template').html())
     slideshow = new StupidSexySlideShow({el: '#slideshow1', collection: slides, template: template})
