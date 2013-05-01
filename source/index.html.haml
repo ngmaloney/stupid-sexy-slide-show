@@ -30,7 +30,7 @@
   .large-12.columns
     %h3 Usage
 
-    %p Below is
+    %p Below is the code used to render the slideshow on this page. It relies on a handlebar template defined within the page source. Underscore templates work just fine too.
 
     .panel
       %pre.code
@@ -43,11 +43,17 @@
             {title: "Slide 4", image: "images/slides/slide4.jpg"}
           ])
 
-          //This example relies on a handlebars template. Underscore templates work just fine too.
+          //Use any Backbone compatible template
           template = Handlebars.compile($('#slideshow-template').html())
 
           //The initializer requires the Backbone 'el' element, a collection and a template
           slideshow = new StupidSexySlideShow({el: '#slideshow1', collection: slides, template: template})
+
+%footer.row
+  .large-12.columns
+    %h3 Sponsored By
+    %a{href: 'http://www.terriblelabs.com'}
+      %img{src: 'images/tl-logo.png'}
 
 %script#slideshow-template{:type => "text/x-handlebars-template"}
   .slideshow
