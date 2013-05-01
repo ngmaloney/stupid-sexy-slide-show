@@ -1,12 +1,3 @@
-#Stupid Sexy Slider
-
-Slide = Backbone.Model.extend({})
-
-Slides = Backbone.Collection.extend
-  model: Slide
-
-  initialize: (models, options) =>
-
 Slider = Backbone.View.extend
 
   events:
@@ -16,8 +7,8 @@ Slider = Backbone.View.extend
 
   initialize: (options) ->
     @collection = options.collection
-    @bind 'transition', @updateNav
     @template = options.template
+    @bind 'transition', @updateNav
 
   render: ->
     content = @template({slides: @collection.toJSON()})
