@@ -16,7 +16,7 @@
   .large-12.columns
     %h3 Introduction
 
-    %p Stupid Sexy Slide Show is a minimalistic javascript content slider built for easy integration with Backbone. It is template and agnostic meaning it will work with any Backbone compatible template library. All styling is handled via CSS.
+    %p Stupid Sexy Slide Show is a minimalistic javascript content slider built for easy integration with Backbone apps. It is template agnostic meaning it will work with any Backbone compatible template library. All styling is handled via CSS.
 
 %section.dependencies.row
   .large-12.columns
@@ -30,15 +30,17 @@
   .large-12.columns
     %h3 Usage
 
+    %p Below is
+
     .panel
       %pre.code
         :preserve
           //Any backbone collection will work
           slides = new Backbone.Collection([
-            {title: "Slide 1", image: "/images/slides/slide1.jpg"},
-            {title: "Slide 2", image: "/images/slides/slide2.jpg"},
-            {title: "Slide 3", image: "/images/slides/slide3.jpg"},
-            {title: "Slide 4", image: "/images/slides/slide4.jpg"}
+            {title: "Slide 1", image: "images/slides/slide1.jpg"},
+            {title: "Slide 2", image: "images/slides/slide2.jpg"},
+            {title: "Slide 3", image: "images/slides/slide3.jpg"},
+            {title: "Slide 4", image: "images/slides/slide4.jpg"}
           ])
 
           //This example relies on a handlebars template. Underscore templates work just fine too.
