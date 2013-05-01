@@ -1,12 +1,4 @@
-var Slide, Slider, Slides, StupidSexySlideShow,
-  _this = this;
-
-Slide = Backbone.Model.extend({});
-
-Slides = Backbone.Collection.extend({
-  model: Slide,
-  initialize: function(models, options) {}
-});
+var Slider, StupidSexySlideShow;
 
 Slider = Backbone.View.extend({
   events: {
@@ -16,12 +8,13 @@ Slider = Backbone.View.extend({
   },
   initialize: function(options) {
     this.collection = options.collection;
-    this.bind('transition', this.updateNav);
-    return this.template = options.template;
+    this.template = options.template;
+    return this.bind('transition', this.updateNav);
   },
   render: function() {
     var content,
       _this = this;
+
     content = this.template({
       slides: this.collection.toJSON()
     });
@@ -34,6 +27,7 @@ Slider = Backbone.View.extend({
   },
   transition: function(from, to) {
     var _this = this;
+
     if (!$(from).is(to)) {
       return $(from).fadeOut("fast", function() {
         $(to).fadeIn("fast");
@@ -43,6 +37,7 @@ Slider = Backbone.View.extend({
   },
   nextSlide: function(e) {
     var from, to;
+
     e.preventDefault();
     from = this.$el.find('.slides li:visible');
     if ($(from).next().length > 0) {
@@ -54,6 +49,7 @@ Slider = Backbone.View.extend({
   },
   prevSlide: function(e) {
     var from, to;
+
     e.preventDefault();
     from = this.$el.find('.slides li:visible');
     if ($(from).prev().length > 0) {
@@ -65,6 +61,7 @@ Slider = Backbone.View.extend({
   },
   navigateTo: function(e) {
     var from, to;
+
     e.preventDefault();
     from = this.$el.find('li:visible');
     to = this.$el.find($(e.target).attr('href'));
@@ -73,6 +70,7 @@ Slider = Backbone.View.extend({
   renderNav: function() {
     var content, items,
       _this = this;
+
     content = "";
     items = this.$el.find('li.slide .title').each(function(index, elem) {
       return content += "<span class=\"index\">" + (index + 1) + ":</span> <a href=\"#slide-" + index + "\">" + ($(elem).text()) + "</a>";
@@ -81,20 +79,17 @@ Slider = Backbone.View.extend({
   },
   updateNav: function() {
     var elem, id;
+
     id = this.$el.find('.slides li:visible').attr('id');
     if (id) {
       elem = this.$el.find('.navigation a[href=#' + id + ']');
       this.$el.find('.navigation a').removeClass('active');
       return this.$el.find(elem).addClass('active');
     }
-  },
-  truncateString: function(text, length) {
-    return $.trim(text).substring(0, length).split(" ").slice(0, -1).join(" ") + "...";
   }
 });
 
 StupidSexySlideShow = (function() {
-
   function StupidSexySlideShow(options) {
     new Slider(options).render();
   }
@@ -106,4 +101,3 @@ StupidSexySlideShow = (function() {
 window.StupidSexySlideShow || (window.StupidSexySlideShow = {});
 
 window.StupidSexySlideShow = StupidSexySlideShow;
-

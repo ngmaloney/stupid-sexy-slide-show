@@ -1,12 +1,3 @@
-#Stupid Sexy Slider
-
-Slide = Backbone.Model.extend({})
-
-Slides = Backbone.Collection.extend
-  model: Slide
-
-  initialize: (models, options) =>
-
 Slider = Backbone.View.extend
 
   events:
@@ -16,8 +7,8 @@ Slider = Backbone.View.extend
 
   initialize: (options) ->
     @collection = options.collection
-    @bind 'transition', @updateNav
     @template = options.template
+    @bind 'transition', @updateNav
 
   render: ->
     content = @template({slides: @collection.toJSON()})
@@ -69,9 +60,6 @@ Slider = Backbone.View.extend
       elem = @$el.find('.navigation a[href=#' + id + ']')
       @$el.find('.navigation a').removeClass('active')
       @$el.find(elem).addClass('active')
-
-  truncateString: (text, length) ->
-    $.trim(text).substring(0,length).split(" ").slice(0, -1).join(" ") + "..."
 
 class StupidSexySlideShow
   constructor: (options) ->
